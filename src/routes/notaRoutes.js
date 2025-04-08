@@ -4,4 +4,5 @@ const router = express.Router();
 router.get("/", notaController.getAll);
 router.get("/:id", notaController.getById);
 router.post("/", notaController.create);
+router.put("/:id", notaController.update);
 export default router;

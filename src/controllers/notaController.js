@@ -42,7 +42,23 @@ class NotaController {
     }
   };
 
+  update = async (req, res) => {
+    const { id } = req.params
+    const { titulo, conteudo, cor } = req.body;
 
+    try {
+      const notaAtualizada = await notaModel.update(Number(id), titulo, conteudo, cor);
+
+      if (!notaAtualizada) {
+        return res.status(404).json({ erro: "Nota não encontrada!" })
+      }
+
+      res.json(notaAtualizada);
+    } catch (error) {
+      console.log(error)
+      res.status(500).json({ erro: "Erro ao atualizar nota" })
+    }
+  };
 
 }
 

@@ -21,7 +21,25 @@ class NotaModel {
       },
     });
   };
-  
+
+  update = async (id, titulo, conteudo, cor) => {
+    try {
+      const nota = await prisma.nota.update({
+        where: { id },
+        data: {
+          titulo, 
+          conteudo,
+          cor
+        }
+      })
+      return(nota);
+
+    } catch (error) {
+      console.log("Error", error);
+      throw error;
+    };
+  };
+
 }
 
 export default new NotaModel();
