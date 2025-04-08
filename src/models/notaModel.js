@@ -11,6 +11,17 @@ class NotaModel {
       where: { id }
     })
   }
+
+  create = async ( titulo, conteudo, cor,) => {
+    return await prisma.nota.create({
+      data: {
+        titulo,
+        conteudo,
+        cor, 
+      },
+    });
+  };
+  
 }
 
 export default new NotaModel();

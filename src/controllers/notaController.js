@@ -26,6 +26,24 @@ class NotaController {
     }
   }
 
+  create = async (req, res) => {
+    const { titulo, conteudo, cor } = req.body;
+    try {
+      if (!titulo) {
+        return res.status(400).json({ erro: "Insira um título para a nota" });
+      } else if(!conteudo){
+        return res.status(400).json({ erro: "Insira um conteúdo válido para a nota"})
+      }
+      const novaNota = notaModel.create(titulo, conteudo, cor);
+      res.status(201).json(novaNota);
+    } catch (error) {
+      console.log(error);
+      res.status(500).json({ erro: "Erro ao criar nota." })
+    }
+  };
+
+
+
 }
 
 export default new NotaController();
