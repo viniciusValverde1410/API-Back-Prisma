@@ -60,6 +60,23 @@ class NotaController {
     }
   };
 
+  delete = async (req, res) => {
+    const { id } = req.params
+
+    try {
+      const sucesso = await notaModel.delete(Number(id));
+
+      if (!sucesso) {
+        return res.status(404).json({ erro: "Nota não encontrada!" })
+      }
+
+      res.status(200).send({ message: "Nota deletada com sucesso"})
+    } catch (error) {
+      console.log(error)
+      res.status(500).json({ erro: "Erro ao deletar nota" })
+    }
+  };
+
 }
 
 export default new NotaController();

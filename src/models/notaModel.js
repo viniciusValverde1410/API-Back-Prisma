@@ -1,7 +1,7 @@
 import prisma from '../../prisma/client.js'
 
 class NotaModel {
-  // fução async - espera algo acontecer
+  // função async - espera algo acontecer
   getAll = async () => {
     return await prisma.nota.findMany()
   };
@@ -24,7 +24,7 @@ class NotaModel {
 
   update = async (id, titulo, conteudo, cor) => {
     try {
-      const nota = await prisma.nota.update({
+      const notaAtualizada = await prisma.nota.update({
         where: { id },
         data: {
           titulo, 
@@ -32,12 +32,25 @@ class NotaModel {
           cor
         }
       })
-      return(nota);
+      return(notaAtualizada);
 
     } catch (error) {
       console.log("Error", error);
       throw error;
     };
+  };
+
+  delete = async (id) => {
+    try{
+      const notaDeletada = await prisma.nota.delete({
+        where: { id },
+      });
+
+      return notaDeletada
+    }catch (error){
+      console.log("Erro ao deletar nota", error);
+      throw error;
+    }
   };
 
 }
