@@ -34,7 +34,7 @@ Este projeto é uma API desenvolvida com Node.js, Express e Prisma para gerencia
          ```bash
          npx prisma migrate dev
          ```
-        3. Configure o arquivo `.env`:
+        . Configure o arquivo `.env`:
             - Crie um arquivo `.env` na raiz do projeto.
             - Adicione as seguintes variáveis de ambiente:
                 ```properties
